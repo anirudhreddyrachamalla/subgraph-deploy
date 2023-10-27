@@ -1,0 +1,13 @@
+type Ownership @entity(immutable: true) {
+  id:Bytes!
+  prevOwner: Bytes! #address
+  newOwner: Bytes! #address
+}
+
+type Bet @entity(mmutable: true) {
+  id: ID!
+  player: Bytes! #address
+  amount: BigInt!
+  choice: BigInt!
+  token: Bytes!
+}
