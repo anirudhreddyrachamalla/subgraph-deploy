@@ -1,13 +1,20 @@
-type Ownership @entity(immutable: true) {
+type IncreasePosition @entity(immutable: true) {
   id:Bytes!
-  prevOwner: Bytes! #address
-  newOwner: Bytes! #address
+  account: Bytes! #address
+  indexToken: Bytes! #address
+  amount: BigInt!
+  sizeDelta: BigInt!
+  acceptablePrice: BigInt!
+  executionFee: BigInt!
+  isLong: Boolean!
 }
 
-type Bet @entity(mmutable: true) {
-  id: ID!
-  player: Bytes! #address
-  amount: BigInt!
-  choice: BigInt!
-  token: Bytes!
+type DecreasePosition @entity(mmutable: true) {
+  id:Bytes!
+  account: Bytes! #address
+  indexToken: Bytes! #address
+  sizeDelta: BigInt!
+  acceptablePrice: BigInt!
+  executionFee: BigInt!
+  isLong: Boolean!
 }
