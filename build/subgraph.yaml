@@ -49,4 +49,4 @@ dataSources:
           handler: handleAddLiquidityEvent
         - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
           handler: handleRemoveLiquidityEvent
-      file: OrderManager/OrderManager.wasm
+      file: LLPManager/LLPManager.wasm

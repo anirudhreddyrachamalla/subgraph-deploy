@@ -49,4 +49,4 @@ dataSources:
           handler: handleAddLiquidityEvent
         - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
           handler: handleRemoveLiquidityEvent
-      file: ./mapping.ts # Replace this with the path to the new mapping file for LLPManager
+      file: ./lpmapping.ts # Replace this with the path to the new mapping file for LLPManager
