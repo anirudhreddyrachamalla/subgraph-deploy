@@ -27,3 +27,26 @@ dataSources:
             address,address,uint256,bool,address,uint256,uint256,uint256,uint256)
           handler: handleDecreasePositionEvent
       file: OrderManager/OrderManager.wasm
+  - kind: ethereum/contract
+    name: LLPManager
+    network: mantle
+    source:
+      address: "0xa58d09e45A5f99bA08f8c9065F63a495eeefaf1E"
+      abi: LLPManager
+      startBlock: 24075723
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddLP
+        - RemoveLP
+      abis:
+        - name: LLPManager
+          file: LLPManager/abis/LLPManager.json
+      eventHandlers:
+        - event: AddLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleAddLiquidityEvent
+        - event: RemoveLiquidity(address,address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidityEvent
+      file: LLPManager/LLPManager.wasm

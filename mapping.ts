@@ -1,6 +1,7 @@
 import { ExecuteDecreasePosition, ExecuteIncreasePosition } from "./generated/OrderManager/OrderManager";
 import { IncreasePosition, DecreasePosition } from "./generated/schema";
 
+
 export function handleIncreasePositionEvent(event: ExecuteIncreasePosition): void{
     let entity = new IncreasePosition(event.transaction.hash.concatI32(event.logIndex.toI32()));
     entity.account = event.params.account;
@@ -23,4 +24,5 @@ export function handleDecreasePositionEvent(event: ExecuteDecreasePosition): voi
     entity.isLong = event.params.isLong;
     entity.save();
 }
+
 

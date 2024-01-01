@@ -18,3 +18,25 @@ type DecreasePosition @entity(mmutable: true) {
   executionFee: BigInt!
   isLong: Boolean!
 }
+
+type AddLP @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  token: Bytes! # address
+  amount: BigInt!
+  aumInUsdl: BigInt!
+  llpSupply: BigInt!
+  usdlAmount: BigInt!
+  mintAmount: BigInt!
+}
+
+type RemoveLP @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  token: Bytes! # address
+  llpAmount: BigInt!
+  aumInUsdl: BigInt!
+  llpSupply: BigInt!
+  usdlAmount: BigInt!
+  amountOut: BigInt!
+}
