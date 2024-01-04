@@ -8,10 +8,10 @@ import {
   store,
   Bytes,
   BigInt,
-  BigDecimal
+  BigDecimal,
 } from "@graphprotocol/graph-ts";
 
-export class IncreasePosition extends Entity {
+export class Positions extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -19,25 +19,25 @@ export class IncreasePosition extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save IncreasePosition entity without an ID");
+    assert(id != null, "Cannot save Positions entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IncreasePosition must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type Positions must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("IncreasePosition", id.toBytes().toHexString(), this);
+      store.set("Positions", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): IncreasePosition | null {
-    return changetype<IncreasePosition | null>(
-      store.get_in_block("IncreasePosition", id.toHexString())
+  static loadInBlock(id: Bytes): Positions | null {
+    return changetype<Positions | null>(
+      store.get_in_block("Positions", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IncreasePosition | null {
-    return changetype<IncreasePosition | null>(
-      store.get("IncreasePosition", id.toHexString())
+  static load(id: Bytes): Positions | null {
+    return changetype<Positions | null>(
+      store.get("Positions", id.toHexString()),
     );
   }
 
@@ -78,19 +78,6 @@ export class IncreasePosition extends Entity {
 
   set indexToken(value: Bytes) {
     this.set("indexToken", Value.fromBytes(value));
-  }
-
-  get amount(): BigInt {
-    let value = this.get("amount");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set amount(value: BigInt) {
-    this.set("amount", Value.fromBigInt(value));
   }
 
   get sizeDelta(): BigInt {
@@ -143,10 +130,40 @@ export class IncreasePosition extends Entity {
 
   set isLong(value: boolean) {
     this.set("isLong", Value.fromBoolean(value));
+  }
+
+  get positionType(): string {
+    let value = this.get("positionType");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set positionType(value: string) {
+    this.set("positionType", Value.fromString(value));
+  }
+
+  get amount(): BigInt | null {
+    let value = this.get("amount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amount(value: BigInt | null) {
+    if (!value) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 
-export class DecreasePosition extends Entity {
+export class LPEvent extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -154,26 +171,24 @@ export class DecreasePosition extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save DecreasePosition entity without an ID");
+    assert(id != null, "Cannot save LPEvent entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type DecreasePosition must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type LPEvent must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("DecreasePosition", id.toBytes().toHexString(), this);
+      store.set("LPEvent", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): DecreasePosition | null {
-    return changetype<DecreasePosition | null>(
-      store.get_in_block("DecreasePosition", id.toHexString())
+  static loadInBlock(id: Bytes): LPEvent | null {
+    return changetype<LPEvent | null>(
+      store.get_in_block("LPEvent", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): DecreasePosition | null {
-    return changetype<DecreasePosition | null>(
-      store.get("DecreasePosition", id.toHexString())
-    );
+  static load(id: Bytes): LPEvent | null {
+    return changetype<LPEvent | null>(store.get("LPEvent", id.toHexString()));
   }
 
   get id(): Bytes {
@@ -202,8 +217,8 @@ export class DecreasePosition extends Entity {
     this.set("account", Value.fromBytes(value));
   }
 
-  get indexToken(): Bytes {
-    let value = this.get("indexToken");
+  get token(): Bytes {
+    let value = this.get("token");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -211,12 +226,12 @@ export class DecreasePosition extends Entity {
     }
   }
 
-  set indexToken(value: Bytes) {
-    this.set("indexToken", Value.fromBytes(value));
+  set token(value: Bytes) {
+    this.set("token", Value.fromBytes(value));
   }
 
-  get sizeDelta(): BigInt {
-    let value = this.get("sizeDelta");
+  get aumInUsdl(): BigInt {
+    let value = this.get("aumInUsdl");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -224,12 +239,12 @@ export class DecreasePosition extends Entity {
     }
   }
 
-  set sizeDelta(value: BigInt) {
-    this.set("sizeDelta", Value.fromBigInt(value));
+  set aumInUsdl(value: BigInt) {
+    this.set("aumInUsdl", Value.fromBigInt(value));
   }
 
-  get acceptablePrice(): BigInt {
-    let value = this.get("acceptablePrice");
+  get llpSupply(): BigInt {
+    let value = this.get("llpSupply");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -237,12 +252,12 @@ export class DecreasePosition extends Entity {
     }
   }
 
-  set acceptablePrice(value: BigInt) {
-    this.set("acceptablePrice", Value.fromBigInt(value));
+  set llpSupply(value: BigInt) {
+    this.set("llpSupply", Value.fromBigInt(value));
   }
 
-  get executionFee(): BigInt {
-    let value = this.get("executionFee");
+  get usdlAmount(): BigInt {
+    let value = this.get("usdlAmount");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -250,20 +265,75 @@ export class DecreasePosition extends Entity {
     }
   }
 
-  set executionFee(value: BigInt) {
-    this.set("executionFee", Value.fromBigInt(value));
+  set usdlAmount(value: BigInt) {
+    this.set("usdlAmount", Value.fromBigInt(value));
   }
 
-  get isLong(): boolean {
-    let value = this.get("isLong");
+  get mintAmount(): BigInt | null {
+    let value = this.get("mintAmount");
     if (!value || value.kind == ValueKind.NULL) {
-      return false;
+      return null;
     } else {
-      return value.toBoolean();
+      return value.toBigInt();
     }
   }
 
-  set isLong(value: boolean) {
-    this.set("isLong", Value.fromBoolean(value));
+  set mintAmount(value: BigInt | null) {
+    if (!value) {
+      this.unset("mintAmount");
+    } else {
+      this.set("mintAmount", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get amount(): BigInt | null {
+    let value = this.get("amount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amount(value: BigInt | null) {
+    if (!value) {
+      this.unset("amount");
+    } else {
+      this.set("amount", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get llpAmount(): BigInt | null {
+    let value = this.get("llpAmount");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set llpAmount(value: BigInt | null) {
+    if (!value) {
+      this.unset("llpAmount");
+    } else {
+      this.set("llpAmount", Value.fromBigInt(<BigInt>value));
+    }
+  }
+
+  get amountOut(): BigInt | null {
+    let value = this.get("amountOut");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set amountOut(value: BigInt | null) {
+    if (!value) {
+      this.unset("amountOut");
+    } else {
+      this.set("amountOut", Value.fromBigInt(<BigInt>value));
+    }
   }
 }

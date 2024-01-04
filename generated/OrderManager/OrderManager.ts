@@ -7,7 +7,7 @@ import {
   Entity,
   Bytes,
   Address,
-  BigInt
+  BigInt,
 } from "@graphprotocol/graph-ts";
 
 export class CancelDecreasePosition extends ethereum.Event {
@@ -728,7 +728,7 @@ export class OrderManager__decreasePositionRequestsResult {
     value6: BigInt,
     value7: BigInt,
     value8: BigInt,
-    value9: BigInt
+    value9: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -920,7 +920,7 @@ export class OrderManager__increasePositionRequestsResult {
     value6: BigInt,
     value7: BigInt,
     value8: BigInt,
-    value9: BigInt
+    value9: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -1016,7 +1016,7 @@ export class OrderManager__ordersResult {
     value8: boolean,
     value9: boolean,
     value10: boolean,
-    value11: BigInt
+    value11: BigInt,
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -1107,7 +1107,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "BASIS_POINTS_DIVISOR",
       "BASIS_POINTS_DIVISOR():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1117,7 +1117,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "BASIS_POINTS_DIVISOR",
       "BASIS_POINTS_DIVISOR():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1147,8 +1147,8 @@ export class OrderManager extends ethereum.SmartContract {
       "cancelDecreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1156,15 +1156,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_cancelDecreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "cancelDecreasePosition",
       "cancelDecreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1179,8 +1179,8 @@ export class OrderManager extends ethereum.SmartContract {
       "cancelIncreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1188,15 +1188,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_cancelIncreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "cancelIncreasePosition",
       "cancelIncreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1210,7 +1210,7 @@ export class OrderManager extends ethereum.SmartContract {
     collateralToken: Address,
     indexToken: Address,
     isLong: boolean,
-    sizeDelta: BigInt
+    sizeDelta: BigInt,
   ): boolean {
     let result = super.call(
       "checkSufficientPositionExists",
@@ -1220,8 +1220,8 @@ export class OrderManager extends ethereum.SmartContract {
         ethereum.Value.fromAddress(collateralToken),
         ethereum.Value.fromAddress(indexToken),
         ethereum.Value.fromBoolean(isLong),
-        ethereum.Value.fromUnsignedBigInt(sizeDelta)
-      ]
+        ethereum.Value.fromUnsignedBigInt(sizeDelta),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1232,7 +1232,7 @@ export class OrderManager extends ethereum.SmartContract {
     collateralToken: Address,
     indexToken: Address,
     isLong: boolean,
-    sizeDelta: BigInt
+    sizeDelta: BigInt,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "checkSufficientPositionExists",
@@ -1242,8 +1242,8 @@ export class OrderManager extends ethereum.SmartContract {
         ethereum.Value.fromAddress(collateralToken),
         ethereum.Value.fromAddress(indexToken),
         ethereum.Value.fromBoolean(isLong),
-        ethereum.Value.fromUnsignedBigInt(sizeDelta)
-      ]
+        ethereum.Value.fromUnsignedBigInt(sizeDelta),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1256,7 +1256,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "decreasePositionRequestKeysStart",
       "decreasePositionRequestKeysStart():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1266,7 +1266,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "decreasePositionRequestKeysStart",
       "decreasePositionRequestKeysStart():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1276,12 +1276,12 @@ export class OrderManager extends ethereum.SmartContract {
   }
 
   decreasePositionRequests(
-    param0: Bytes
+    param0: Bytes,
   ): OrderManager__decreasePositionRequestsResult {
     let result = super.call(
       "decreasePositionRequests",
       "decreasePositionRequests(bytes32):(address,address,address,uint256,bool,address,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
 
     return new OrderManager__decreasePositionRequestsResult(
@@ -1294,17 +1294,17 @@ export class OrderManager extends ethereum.SmartContract {
       result[6].toBigInt(),
       result[7].toBigInt(),
       result[8].toBigInt(),
-      result[9].toBigInt()
+      result[9].toBigInt(),
     );
   }
 
   try_decreasePositionRequests(
-    param0: Bytes
+    param0: Bytes,
   ): ethereum.CallResult<OrderManager__decreasePositionRequestsResult> {
     let result = super.tryCall(
       "decreasePositionRequests",
       "decreasePositionRequests(bytes32):(address,address,address,uint256,bool,address,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1321,8 +1321,8 @@ export class OrderManager extends ethereum.SmartContract {
         value[6].toBigInt(),
         value[7].toBigInt(),
         value[8].toBigInt(),
-        value[9].toBigInt()
-      )
+        value[9].toBigInt(),
+      ),
     );
   }
 
@@ -1330,7 +1330,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "decreasePositionsIndex",
       "decreasePositionsIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -1340,7 +1340,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "decreasePositionsIndex",
       "decreasePositionsIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1366,15 +1366,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   executeDecreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): boolean {
     let result = super.call(
       "executeDecreasePosition",
       "executeDecreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1382,15 +1382,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_executeDecreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "executeDecreasePosition",
       "executeDecreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1401,15 +1401,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   executeDecreasePositions(
     _endIndex: BigInt,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): BigInt {
     let result = super.call(
       "executeDecreasePositions",
       "executeDecreasePositions(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(_endIndex),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1417,15 +1417,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_executeDecreasePositions(
     _endIndex: BigInt,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "executeDecreasePositions",
       "executeDecreasePositions(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(_endIndex),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1436,15 +1436,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   executeIncreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): boolean {
     let result = super.call(
       "executeIncreasePosition",
       "executeIncreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBoolean();
@@ -1452,15 +1452,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_executeIncreasePosition(
     _key: Bytes,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "executeIncreasePosition",
       "executeIncreasePosition(bytes32,address):(bool)",
       [
         ethereum.Value.fromFixedBytes(_key),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1471,15 +1471,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   executeIncreasePositions(
     _endIndex: BigInt,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): BigInt {
     let result = super.call(
       "executeIncreasePositions",
       "executeIncreasePositions(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(_endIndex),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
 
     return result[0].toBigInt();
@@ -1487,15 +1487,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_executeIncreasePositions(
     _endIndex: BigInt,
-    _executionFeeReceiver: Address
+    _executionFeeReceiver: Address,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "executeIncreasePositions",
       "executeIncreasePositions(uint256,address):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(_endIndex),
-        ethereum.Value.fromAddress(_executionFeeReceiver)
-      ]
+        ethereum.Value.fromAddress(_executionFeeReceiver),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1506,7 +1506,7 @@ export class OrderManager extends ethereum.SmartContract {
 
   feeReserves(param0: Address): BigInt {
     let result = super.call("feeReserves", "feeReserves(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -1516,7 +1516,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "feeReserves",
       "feeReserves(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1529,12 +1529,10 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "getAllOrders",
       "getAllOrders():((address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256)[])",
-      []
+      [],
     );
 
-    return result[0].toTupleArray<
-      OrderManager__getAllOrdersResultValue0Struct
-    >();
+    return result[0].toTupleArray<OrderManager__getAllOrdersResultValue0Struct>();
   }
 
   try_getAllOrders(): ethereum.CallResult<
@@ -1543,14 +1541,14 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "getAllOrders",
       "getAllOrders():((address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256)[])",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTupleArray<OrderManager__getAllOrdersResultValue0Struct>()
+      value[0].toTupleArray<OrderManager__getAllOrdersResultValue0Struct>(),
     );
   }
 
@@ -1558,7 +1556,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "getDecreasePositionCount",
       "getDecreasePositionCount():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1568,7 +1566,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "getDecreasePositionCount",
       "getDecreasePositionCount():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1581,7 +1579,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "getIncreasePositionCount",
       "getIncreasePositionCount():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1591,7 +1589,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "getIncreasePositionCount",
       "getIncreasePositionCount():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1604,28 +1602,30 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "getOrderAt",
       "getOrderAt(uint256):((address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(index)]
+      [ethereum.Value.fromUnsignedBigInt(index)],
     );
 
     return changetype<OrderManager__getOrderAtResultValue0Struct>(
-      result[0].toTuple()
+      result[0].toTuple(),
     );
   }
 
   try_getOrderAt(
-    index: BigInt
+    index: BigInt,
   ): ethereum.CallResult<OrderManager__getOrderAtResultValue0Struct> {
     let result = super.tryCall(
       "getOrderAt",
       "getOrderAt(uint256):((address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256))",
-      [ethereum.Value.fromUnsignedBigInt(index)]
+      [ethereum.Value.fromUnsignedBigInt(index)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      changetype<OrderManager__getOrderAtResultValue0Struct>(value[0].toTuple())
+      changetype<OrderManager__getOrderAtResultValue0Struct>(
+        value[0].toTuple(),
+      ),
     );
   }
 
@@ -1635,8 +1635,8 @@ export class OrderManager extends ethereum.SmartContract {
       "getOrderKey(address,uint256):(bytes32)",
       [
         ethereum.Value.fromAddress(_account),
-        ethereum.Value.fromUnsignedBigInt(index)
-      ]
+        ethereum.Value.fromUnsignedBigInt(index),
+      ],
     );
 
     return result[0].toBytes();
@@ -1644,15 +1644,15 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_getOrderKey(
     _account: Address,
-    index: BigInt
+    index: BigInt,
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
       "getOrderKey",
       "getOrderKey(address,uint256):(bytes32)",
       [
         ethereum.Value.fromAddress(_account),
-        ethereum.Value.fromUnsignedBigInt(index)
-      ]
+        ethereum.Value.fromUnsignedBigInt(index),
+      ],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1671,7 +1671,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "getOrdersCount",
       "getOrdersCount():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1684,7 +1684,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "increasePositionBufferBps",
       "increasePositionBufferBps():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1694,7 +1694,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "increasePositionBufferBps",
       "increasePositionBufferBps():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1707,7 +1707,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "increasePositionRequestKeys",
       "increasePositionRequestKeys(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
 
     return result[0].toBytes();
@@ -1717,7 +1717,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "increasePositionRequestKeys",
       "increasePositionRequestKeys(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)]
+      [ethereum.Value.fromUnsignedBigInt(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1730,7 +1730,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "increasePositionRequestKeysStart",
       "increasePositionRequestKeysStart():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1740,7 +1740,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "increasePositionRequestKeysStart",
       "increasePositionRequestKeysStart():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1750,12 +1750,12 @@ export class OrderManager extends ethereum.SmartContract {
   }
 
   increasePositionRequests(
-    param0: Bytes
+    param0: Bytes,
   ): OrderManager__increasePositionRequestsResult {
     let result = super.call(
       "increasePositionRequests",
       "increasePositionRequests(bytes32):(address,address,address,uint256,uint256,bool,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
 
     return new OrderManager__increasePositionRequestsResult(
@@ -1768,17 +1768,17 @@ export class OrderManager extends ethereum.SmartContract {
       result[6].toBigInt(),
       result[7].toBigInt(),
       result[8].toBigInt(),
-      result[9].toBigInt()
+      result[9].toBigInt(),
     );
   }
 
   try_increasePositionRequests(
-    param0: Bytes
+    param0: Bytes,
   ): ethereum.CallResult<OrderManager__increasePositionRequestsResult> {
     let result = super.tryCall(
       "increasePositionRequests",
       "increasePositionRequests(bytes32):(address,address,address,uint256,uint256,bool,uint256,uint256,uint256,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1795,8 +1795,8 @@ export class OrderManager extends ethereum.SmartContract {
         value[6].toBigInt(),
         value[7].toBigInt(),
         value[8].toBigInt(),
-        value[9].toBigInt()
-      )
+        value[9].toBigInt(),
+      ),
     );
   }
 
@@ -1804,7 +1804,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "increasePositionsIndex",
       "increasePositionsIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBigInt();
@@ -1814,7 +1814,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "increasePositionsIndex",
       "increasePositionsIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1825,7 +1825,7 @@ export class OrderManager extends ethereum.SmartContract {
 
   isLiquidator(param0: Address): boolean {
     let result = super.call("isLiquidator", "isLiquidator(address):(bool)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBoolean();
@@ -1833,7 +1833,7 @@ export class OrderManager extends ethereum.SmartContract {
 
   try_isLiquidator(param0: Address): ethereum.CallResult<boolean> {
     let result = super.tryCall("isLiquidator", "isLiquidator(address):(bool)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1844,7 +1844,7 @@ export class OrderManager extends ethereum.SmartContract {
 
   isOrderKeeper(param0: Address): boolean {
     let result = super.call("isOrderKeeper", "isOrderKeeper(address):(bool)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBoolean();
@@ -1854,7 +1854,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "isOrderKeeper",
       "isOrderKeeper(address):(bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1867,7 +1867,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "isPositionKeeper",
       "isPositionKeeper(address):(bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
 
     return result[0].toBoolean();
@@ -1877,7 +1877,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "isPositionKeeper",
       "isPositionKeeper(address):(bool)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1890,7 +1890,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "maxProfitMultiplier",
       "maxProfitMultiplier():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1900,7 +1900,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "maxProfitMultiplier",
       "maxProfitMultiplier():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1928,7 +1928,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minBlockDelayKeeper",
       "minBlockDelayKeeper():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1938,7 +1938,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minBlockDelayKeeper",
       "minBlockDelayKeeper():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1951,7 +1951,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minExecutionFeeLimitOrder",
       "minExecutionFeeLimitOrder():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1961,7 +1961,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minExecutionFeeLimitOrder",
       "minExecutionFeeLimitOrder():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1974,7 +1974,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minExecutionFeeMarketOrder",
       "minExecutionFeeMarketOrder():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -1984,7 +1984,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minExecutionFeeMarketOrder",
       "minExecutionFeeMarketOrder():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1997,7 +1997,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minPurchaseUSDAmountLimitOrder",
       "minPurchaseUSDAmountLimitOrder():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -2007,7 +2007,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minPurchaseUSDAmountLimitOrder",
       "minPurchaseUSDAmountLimitOrder():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2020,7 +2020,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minPurchaseUSDAmountMarketOrder",
       "minPurchaseUSDAmountMarketOrder():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -2030,7 +2030,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minPurchaseUSDAmountMarketOrder",
       "minPurchaseUSDAmountMarketOrder():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2043,7 +2043,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "minTimeDelayPublic",
       "minTimeDelayPublic():(uint256)",
-      []
+      [],
     );
 
     return result[0].toBigInt();
@@ -2053,7 +2053,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "minTimeDelayPublic",
       "minTimeDelayPublic():(uint256)",
-      []
+      [],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2066,7 +2066,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.call(
       "orders",
       "orders(bytes32):(address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
 
     return new OrderManager__ordersResult(
@@ -2081,7 +2081,7 @@ export class OrderManager extends ethereum.SmartContract {
       result[8].toBoolean(),
       result[9].toBoolean(),
       result[10].toBoolean(),
-      result[11].toBigInt()
+      result[11].toBigInt(),
     );
   }
 
@@ -2089,7 +2089,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "orders",
       "orders(bytes32):(address,address,address,uint256,uint256,uint256,uint256,bool,bool,bool,bool,uint256)",
-      [ethereum.Value.fromFixedBytes(param0)]
+      [ethereum.Value.fromFixedBytes(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -2108,14 +2108,14 @@ export class OrderManager extends ethereum.SmartContract {
         value[8].toBoolean(),
         value[9].toBoolean(),
         value[10].toBoolean(),
-        value[11].toBigInt()
-      )
+        value[11].toBigInt(),
+      ),
     );
   }
 
   ordersIndex(param0: Address): BigInt {
     let result = super.call("ordersIndex", "ordersIndex(address):(uint256)", [
-      ethereum.Value.fromAddress(param0)
+      ethereum.Value.fromAddress(param0),
     ]);
 
     return result[0].toBigInt();
@@ -2125,7 +2125,7 @@ export class OrderManager extends ethereum.SmartContract {
     let result = super.tryCall(
       "ordersIndex",
       "ordersIndex(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
+      [ethereum.Value.fromAddress(param0)],
     );
     if (result.reverted) {
       return new ethereum.CallResult();

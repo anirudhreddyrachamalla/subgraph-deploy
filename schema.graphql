@@ -1,20 +1,24 @@
-type IncreasePosition @entity(immutable: true) {
+type Positions @entity(immutable: true) {
   id:Bytes!
   account: Bytes! #address
   indexToken: Bytes! #address
-  amount: BigInt!
   sizeDelta: BigInt!
   acceptablePrice: BigInt!
   executionFee: BigInt!
   isLong: Boolean!
+  positionType: String!
+  amount: BigInt
 }
 
-type DecreasePosition @entity(mmutable: true) {
-  id:Bytes!
-  account: Bytes! #address
-  indexToken: Bytes! #address
-  sizeDelta: BigInt!
-  acceptablePrice: BigInt!
-  executionFee: BigInt!
-  isLong: Boolean!
+type LPEvent @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  token: Bytes! # address
+  aumInUsdl: BigInt!
+  llpSupply: BigInt!
+  usdlAmount: BigInt!
+  mintAmount: BigInt
+  amount: BigInt
+  llpAmount: BigInt
+  amountOut: BigInt
 }
